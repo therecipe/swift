@@ -1,0 +1,9 @@
+.DS_Store
+deploy/*
+vendor/*
+rcc*
+moc*
+*.qmlc
+
+interop_server
+app
