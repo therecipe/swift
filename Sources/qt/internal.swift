@@ -1,4 +1,8 @@
+import CoreFoundation
 import Foundation
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
 
 //
 // Internal class, PipeBuffer struct and URLSession extension
@@ -218,12 +222,12 @@ func convertMapToJson(l: [String: Any]) -> [String: Any] {
 }
 
 func convertToJson(l: Any) -> Any {
-    if let l = l as? Internal {
-        return l.ToJson()
-    } else if let l = l as? [Any] {
+    if let l = l as? [Any] {
         return convertListToJson(l: l)
     } else if let l = l as? [String: Any] {
         return convertMapToJson(l: l)
+    } else if let l = l as? Internal {
+        return l.ToJson()
     }
     return l
 }
